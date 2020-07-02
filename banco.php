@@ -1,6 +1,22 @@
 <?php
+function sacar(array $conta,float $valor): array {
+    if($valor > $conta['saldo']){
+        exibeMensagem("Você não pode Sacar");
+    }else{
+        $conta['saldo'] -= $valor;
+    }
+    return $conta;
+}
+function depositar(array $conta, float $valor): array {
+    if($valor < 0){
+        exibeMensagem("Não é possivel depositar valor negativo");
+    }else{
+        $conta['saldo'] += $valor;
+    }
+    return $conta;
+}
 
-function exibeMensagem($mensagem){
+function exibeMensagem(string $mensagem){
     echo $mensagem.PHP_EOL;
 }
 
@@ -18,12 +34,10 @@ $contasCorrentes = [
         'saldo' => 3900
     ]
 ];
-if (3500 > $contasCorrentes['123.456.789-10']['saldo']){
-    exibeMensagem('Você nao tem esse dinheiro para sacar');
-}else{
-    $contasCorrentes['123.456.789-10']['saldo'] -= 3500;
-}
+$contasCorrentes['123.456.789-10'] =  sacar($contasCorrentes['123.456.789-10'] , 2000);
+$contasCorrentes['123.456.789-10'] =  depositar($contasCorrentes['123.456.789-10'] , 800);
+
 
 foreach ($contasCorrentes as $cpf => $conta){
-    exibeMensagem($cpf . " " . $conta['titular']. " " . $conta['saldo']);
+    exibeMensagem("$cpf {$conta['titular']} {$conta['saldo']}");
 }
