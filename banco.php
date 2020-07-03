@@ -18,6 +18,8 @@ $contasCorrentes['123.456.789-10'] =  sacar($contasCorrentes['123.456.789-10'] ,
 $contasCorrentes['123.456.789-10'] =  depositar($contasCorrentes['123.456.789-10'] , 800);
 titularLetraMaiscula($contasCorrentes['123.456.789-10']);
 
+//COMO REMOVER UM ITEM \/
+unset($contasCorrentes['123.456.789-12']);
 
 foreach ($contasCorrentes as $cpf => $conta){
     exibeMensagem("$cpf {$conta['titular']} {$conta['saldo']}");
